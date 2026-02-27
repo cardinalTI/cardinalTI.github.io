@@ -1,352 +1,824 @@
 <!DOCTYPE html>
-<html class="wide wow-animation" lang="en">
-  <head>
-    <title>Cardinal TI</title>
-    <meta name="format-detection" content="telephone=no">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="utf-8">
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <!-- Stylesheets-->
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Poppins:400,500,600%7CTeko:300,400,500%7CMaven+Pro:500">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/style.css">
-    <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
-  </head>
-  <body>
-    <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
-    <div class="preloader">
-      <div class="preloader-body">
-        <div class="cssload-container"><span></span><span></span><span></span><span></span>
-        </div>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexus — Tecnología que te inspira</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --white: #ffffff;
+  --black: #1d1d1f;
+  --gray: #6e6e73;
+  --light: #f5f5f7;
+  --blue: #0071e3;
+  --blue-hover: #0077ed;
+  --border: rgba(0,0,0,0.08);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 52px; /* offset for fixed nav */
+}
+
+body {
+  font-family: -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 44px; height: 52px;
+}
+nav .logo { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; color: var(--black); text-decoration: none; }
+nav ul { list-style: none; display: flex; gap: 22px; }
+nav ul li a { font-size: 13px; color: var(--black); text-decoration: none; opacity: 0.8; transition: opacity 0.2s, color 0.2s; }
+nav ul li a:hover { opacity: 1; }
+nav ul li a.active { color: var(--blue); opacity: 1; font-weight: 500; }
+.nav-menu-toggle { display: none; background: none; border: none; cursor: pointer; font-size: 22px; }
+nav .nav-cta {
+  background: var(--blue); color: #fff;
+  font-size: 13px; font-weight: 500; text-decoration: none;
+  padding: 7px 16px; border-radius: 980px; transition: background 0.2s;
+}
+nav .nav-cta:hover { background: var(--blue-hover); }
+
+.mobile-menu {
+  display: none; position: fixed; top: 52px; left: 0; right: 0; z-index: 998;
+  background: rgba(255,255,255,0.97); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 24px; flex-direction: column; gap: 4px;
+}
+.mobile-menu a {
+  display: block; font-size: 17px; color: var(--black); text-decoration: none;
+  padding: 10px 0; border-bottom: 1px solid var(--border); transition: color 0.2s;
+}
+.mobile-menu a:hover { color: var(--blue); }
+.mobile-menu.open { display: flex; }
+
+/* ─── SHARED ─── */
+.section-eyebrow {
+  font-size: 13px; font-weight: 600; letter-spacing: 0.8px;
+  text-transform: uppercase; color: var(--gray);
+  text-align: center; margin-bottom: 16px;
+}
+.section-h2 {
+  font-size: clamp(32px, 4.5vw, 56px);
+  font-weight: 700; letter-spacing: -1.2px; line-height: 1.06;
+  text-align: center; margin-bottom: 20px; max-width: 22ch; margin-left: auto; margin-right: auto;
+}
+.section-lead {
+  font-size: clamp(17px, 1.8vw, 21px); color: var(--gray);
+  font-weight: 300; line-height: 1.55; text-align: center;
+  max-width: 44ch; margin: 0 auto 56px;
+}
+.btn-primary {
+  background: var(--blue); color: #fff;
+  padding: 14px 28px; border-radius: 980px;
+  font-size: 17px; font-weight: 400; text-decoration: none;
+  transition: background 0.2s, transform 0.15s; display: inline-block;
+}
+.btn-primary:hover { background: var(--blue-hover); transform: scale(1.02); }
+.btn-outline {
+  color: var(--blue); font-size: 17px; font-weight: 400; text-decoration: none;
+  padding: 13px 27px; border: 1.5px solid var(--blue); border-radius: 980px;
+  display: inline-block; transition: background 0.2s, color 0.2s;
+}
+.btn-outline:hover { background: var(--blue); color: #fff; }
+.btn-ghost {
+  color: var(--blue); font-size: 17px; font-weight: 400;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 4px; transition: opacity 0.2s;
+}
+.btn-ghost:hover { opacity: 0.7; }
+.btn-ghost::after { content: '›'; font-size: 22px; line-height: 1; }
+.card-link { color: var(--blue); font-size: 15px; text-decoration: none; display: inline-flex; align-items: center; gap: 3px; transition: opacity 0.2s; }
+.card-link:hover { opacity: 0.7; }
+.card-link::after { content: '›'; font-size: 20px; }
+
+/* ─── 1. HERO ─── */
+#inicio {
+  height: 100vh; min-height: 700px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; background: linear-gradient(180deg, #fafafa 0%, #f0f0f5 100%);
+  padding: 90px 24px 60px; position: relative; overflow: hidden;
+}
+#inicio::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,113,227,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-eyebrow { font-size: 17px; font-weight: 600; color: var(--blue); letter-spacing: 0.3px; margin-bottom: 18px; opacity: 0; animation: fadeUp 0.8s 0.1s forwards; }
+#inicio h1 { font-size: clamp(52px, 7vw, 96px); font-weight: 700; letter-spacing: -2.5px; line-height: 1.03; max-width: 14ch; margin: 0 auto 16px; opacity: 0; animation: fadeUp 0.9s 0.2s forwards; }
+.hero-sub { font-size: clamp(19px, 2.5vw, 26px); color: var(--gray); font-weight: 300; max-width: 38ch; line-height: 1.45; margin: 0 auto 40px; opacity: 0; animation: fadeUp 0.9s 0.35s forwards; }
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; opacity: 0; animation: fadeUp 0.9s 0.5s forwards; }
+.hero-visual { margin-top: 56px; width: 100%; max-width: 780px; opacity: 0; animation: fadeUp 1s 0.65s forwards; }
+.device-mock {
+  width: 100%; max-width: 640px; margin: 0 auto;
+  background: linear-gradient(135deg, #1c1c1e 0%, #2c2c2e 100%);
+  border-radius: 28px; aspect-ratio: 16/10;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.1) inset, 0 40px 100px rgba(0,0,0,0.22);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.device-mock::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,113,227,0.25) 0%, rgba(120,40,220,0.15) 50%, transparent 100%); }
+.device-inner { position: relative; text-align: center; color: white; }
+.device-inner .icon { font-size: 56px; margin-bottom: 12px; display: block; }
+.device-inner p { font-size: 17px; font-weight: 300; opacity: 0.6; }
+
+/* ─── 2. SERVICIOS ─── */
+#servicios { background: var(--light); padding: 110px 44px; }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; max-width: 1200px; margin: 0 auto; }
+.service-card { background: var(--white); border-radius: 20px; padding: 44px 32px; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; }
+.service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.09); }
+.service-card .s-icon { font-size: 44px; margin-bottom: 20px; display: block; }
+.service-card h3 { font-size: 22px; font-weight: 700; letter-spacing: -0.4px; margin-bottom: 10px; }
+.service-card p { font-size: 15px; color: var(--gray); line-height: 1.6; margin-bottom: 20px; }
+
+/* ─── 3. CASOS DE ÉXITO ─── */
+#casos { padding: 110px 44px; background: var(--white); }
+.casos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+.caso-card { border-radius: 20px; overflow: hidden; background: var(--light); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; }
+.caso-card:hover { transform: translateY(-5px); box-shadow: 0 24px 64px rgba(0,0,0,0.1); }
+.caso-img { height: 200px; display: flex; align-items: center; justify-content: center; font-size: 64px; }
+.caso-img.c1 { background: linear-gradient(135deg, #e8f4fd, #c3dff7); }
+.caso-img.c2 { background: linear-gradient(135deg, #f0f9ee, #c8e9c2); }
+.caso-img.c3 { background: linear-gradient(135deg, #fef3e2, #fdd9a0); }
+.caso-img.c4 { background: linear-gradient(135deg, #f5e6ff, #ddb8f9); }
+.caso-body { padding: 28px 28px 32px; }
+.caso-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+.caso-body h3 { font-size: 20px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 8px; }
+.caso-body p { font-size: 14px; color: var(--gray); line-height: 1.6; margin-bottom: 16px; }
+.caso-stat { font-size: 28px; font-weight: 700; letter-spacing: -1px; }
+.caso-stat span { font-size: 14px; font-weight: 400; color: var(--gray); margin-left: 4px; }
+
+/* ─── 4. NOSOTROS ─── */
+#nosotros {
+  padding: 110px 44px;
+  background: linear-gradient(180deg, #0a0a0a 0%, #111827 100%);
+  color: white; position: relative; overflow: hidden;
+}
+#nosotros::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(0,113,227,0.15) 0%, transparent 70%);
+}
+.nosotros-inner { max-width: 1100px; margin: 0 auto; position: relative; }
+.nosotros-top { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-bottom: 72px; }
+.nosotros-top h2 { font-size: clamp(36px, 4vw, 56px); font-weight: 700; letter-spacing: -1.5px; line-height: 1.05; }
+.nosotros-top p { font-size: 18px; color: rgba(255,255,255,0.55); font-weight: 300; line-height: 1.65; }
+.nosotros-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: rgba(255,255,255,0.08); border-radius: 16px; overflow: hidden; }
+.ns-stat { background: rgba(255,255,255,0.05); padding: 36px 28px; text-align: center; }
+.ns-stat-num { font-size: 40px; font-weight: 700; letter-spacing: -1.5px; color: white; }
+.ns-stat-label { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 6px; }
+.team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; margin-top: 60px; }
+.team-card { text-align: center; }
+.team-avatar { width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 14px; display: flex; align-items: center; justify-content: center; font-size: 32px; }
+.t1 { background: linear-gradient(135deg, #667eea, #764ba2); }
+.t2 { background: linear-gradient(135deg, #f093fb, #f5576c); }
+.t3 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+.t4 { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+.team-card h4 { font-size: 16px; font-weight: 600; color: white; margin-bottom: 4px; }
+.team-card p { font-size: 13px; color: rgba(255,255,255,0.45); }
+
+/* ─── 5. CLIENTES ─── */
+#clientes { padding: 90px 44px; background: var(--light); }
+.clients-logos { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 14px; max-width: 1000px; margin: 0 auto; }
+.client-logo {
+  background: var(--white); border-radius: 14px; padding: 22px 32px;
+  font-size: 15px; font-weight: 700; letter-spacing: -0.2px; color: var(--gray);
+  transition: color 0.2s, box-shadow 0.2s; cursor: default;
+}
+.client-logo:hover { color: var(--black); box-shadow: 0 8px 24px rgba(0,0,0,0.07); }
+
+/* ─── 6. BLOG ─── */
+#blog { padding: 110px 44px; background: var(--white); }
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto; }
+.blog-card { border-radius: 20px; overflow: hidden; background: var(--light); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; }
+.blog-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.09); }
+.blog-thumb { height: 180px; display: flex; align-items: center; justify-content: center; font-size: 48px; }
+.bt1 { background: linear-gradient(135deg, #fdf6e3, #f5c842); }
+.bt2 { background: linear-gradient(135deg, #e3f2fd, #64b5f6); }
+.bt3 { background: linear-gradient(135deg, #fce4ec, #f48fb1); }
+.blog-body { padding: 24px 26px 30px; }
+.blog-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+.blog-body h3 { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 8px; line-height: 1.3; }
+.blog-body p { font-size: 14px; color: var(--gray); line-height: 1.6; margin-bottom: 16px; }
+.blog-meta { font-size: 12px; color: var(--gray); }
+
+/* ─── 7. CONTACTO ─── */
+#contacto { padding: 110px 44px; background: linear-gradient(180deg, #fbfbfd 0%, var(--light) 100%); }
+.contact-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.contact-info h2 { font-size: clamp(32px, 4vw, 48px); font-weight: 700; letter-spacing: -1px; margin-bottom: 20px; }
+.contact-info p { font-size: 17px; color: var(--gray); font-weight: 300; line-height: 1.6; margin-bottom: 32px; }
+.contact-item { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.contact-item span:first-child { font-size: 24px; }
+.contact-item a { font-size: 15px; color: var(--blue); text-decoration: none; }
+.contact-form { display: flex; flex-direction: column; gap: 14px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label { font-size: 13px; font-weight: 500; color: var(--black); }
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; padding: 12px 16px;
+  border: 1.5px solid rgba(0,0,0,0.12); border-radius: 10px;
+  font-size: 15px; font-family: inherit; color: var(--black);
+  background: var(--white); transition: border-color 0.2s; outline: none;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--blue); }
+.form-group textarea { resize: vertical; min-height: 110px; }
+.form-submit { background: var(--blue); color: white; border: none; border-radius: 980px; padding: 14px 28px; font-size: 17px; font-weight: 400; cursor: pointer; transition: background 0.2s, transform 0.15s; }
+.form-submit:hover { background: var(--blue-hover); transform: scale(1.02); }
+
+/* ─── 8. TESTIMONIOS ─── */
+#testimonios { padding: 110px 44px; background: var(--black); color: white; }
+#testimonios .section-eyebrow { color: rgba(255,255,255,0.4); }
+#testimonios .section-h2 { color: white; }
+.testimonios-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; max-width: 1200px; margin: 0 auto; }
+.testi-card { background: rgba(255,255,255,0.06); border-radius: 20px; padding: 36px 32px; border: 1px solid rgba(255,255,255,0.08); transition: background 0.2s; }
+.testi-card:hover { background: rgba(255,255,255,0.09); }
+.testi-stars { color: #f5c842; font-size: 16px; margin-bottom: 16px; letter-spacing: 2px; }
+.testi-card blockquote { font-size: 16px; color: rgba(255,255,255,0.75); line-height: 1.65; font-weight: 300; margin-bottom: 24px; font-style: italic; }
+.testi-author { display: flex; align-items: center; gap: 12px; }
+.testi-avatar { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+.ta1 { background: linear-gradient(135deg, #667eea, #764ba2); }
+.ta2 { background: linear-gradient(135deg, #f093fb, #f5576c); }
+.ta3 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+.ta4 { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+.testi-author-info h4 { font-size: 15px; font-weight: 600; color: white; }
+.testi-author-info p { font-size: 13px; color: rgba(255,255,255,0.4); }
+
+/* ─── 9. VENTAJAS ─── */
+#ventajas { padding: 110px 44px; background: var(--light); }
+.ventajas-inner { max-width: 1100px; margin: 0 auto; }
+.ventajas-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2px; background: rgba(0,0,0,0.06); border-radius: 20px; overflow: hidden; margin-bottom: 64px; }
+.ventaja-item { background: var(--white); padding: 44px 36px; transition: background 0.2s; }
+.ventaja-item:hover { background: #f0f8ff; }
+.v-icon { font-size: 40px; margin-bottom: 18px; display: block; }
+.ventaja-item h3 { font-size: 20px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 10px; }
+.ventaja-item p { font-size: 15px; color: var(--gray); line-height: 1.6; }
+.ventajas-cta { text-align: center; }
+.ventajas-cta h3 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 24px; }
+
+/* ─── 10. DIAGNÓSTICO ─── */
+#diagnostico {
+  padding: 110px 44px;
+  background: linear-gradient(135deg, #0071e3 0%, #0a2a6e 100%);
+  color: white; text-align: center; position: relative; overflow: hidden;
+}
+#diagnostico::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% 100%, rgba(255,255,255,0.05) 0%, transparent 70%);
+}
+#diagnostico .section-eyebrow { color: rgba(255,255,255,0.6); }
+#diagnostico .section-h2 { color: white; }
+#diagnostico .section-lead { color: rgba(255,255,255,0.65); margin-bottom: 48px; }
+.diag-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 900px; margin: 0 auto 56px; position: relative; }
+.diag-step { background: rgba(255,255,255,0.1); border-radius: 16px; padding: 32px 24px; border: 1px solid rgba(255,255,255,0.15); text-align: center; }
+.diag-step-num { font-size: 36px; font-weight: 700; color: rgba(255,255,255,0.3); margin-bottom: 10px; }
+.diag-step h4 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+.diag-step p { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.5; }
+.diag-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; }
+.btn-white { background: white; color: var(--blue); padding: 14px 28px; border-radius: 980px; font-size: 17px; font-weight: 500; text-decoration: none; transition: transform 0.15s, box-shadow 0.2s; display: inline-block; }
+.btn-white:hover { transform: scale(1.02); box-shadow: 0 8px 32px rgba(0,0,0,0.25); }
+.btn-white-outline { border: 1.5px solid rgba(255,255,255,0.5); color: white; padding: 13px 27px; border-radius: 980px; font-size: 17px; font-weight: 400; text-decoration: none; transition: border-color 0.2s, background 0.2s; display: inline-block; }
+.btn-white-outline:hover { border-color: white; background: rgba(255,255,255,0.1); }
+
+/* ─── FOOTER ─── */
+footer { background: #f5f5f7; border-top: 1px solid rgba(0,0,0,0.1); padding: 48px 44px 36px; }
+.footer-cols { display: grid; grid-template-columns: 2fr repeat(4, 1fr); gap: 40px; max-width: 1200px; margin: 0 auto 40px; }
+.footer-brand-col .footer-logo { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; color: var(--black); margin-bottom: 12px; display: block; }
+.footer-brand-col p { font-size: 13px; color: var(--gray); line-height: 1.6; max-width: 22ch; }
+.footer-col h5 { font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: var(--black); margin-bottom: 14px; }
+.footer-col a { display: block; font-size: 13px; color: var(--gray); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+.footer-col a:hover { color: var(--black); }
+.footer-bottom { max-width: 1200px; margin: 0 auto; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-bottom p { font-size: 12px; color: var(--gray); }
+.footer-bottom-links { display: flex; gap: 16px; flex-wrap: wrap; }
+.footer-bottom-links a { font-size: 12px; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+.footer-bottom-links a:hover { color: var(--black); }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  nav ul { display: none; }
+  .nav-menu-toggle { display: block; }
+  nav { padding: 0 20px; }
+  #inicio, #servicios, #casos, #nosotros, #clientes, #blog, #contacto, #testimonios, #ventajas, #diagnostico { padding-left: 20px; padding-right: 20px; }
+  .nosotros-top { grid-template-columns: 1fr; gap: 32px; }
+  .nosotros-stats { grid-template-columns: repeat(2, 1fr); }
+  .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-cols { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .footer-brand-col { grid-column: 1 / -1; }
+}
+@media (max-width: 600px) {
+  #inicio h1 { letter-spacing: -1.5px; }
+  .footer-cols { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#inicio" class="logo">⌘ Nexus</a>
+  <ul>
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#casos">Proyectos</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#clientes">Clientes</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#testimonios">Opiniones</a></li>
+    <li><a href="#ventajas">Ventajas</a></li>
+  </ul>
+  <a href="#diagnostico" class="nav-cta">Diagnóstico gratis</a>
+  <button class="nav-menu-toggle" onclick="toggleMenu()" aria-label="Menú">☰</button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#inicio" onclick="toggleMenu()">Inicio</a>
+  <a href="#servicios" onclick="toggleMenu()">Servicios</a>
+  <a href="#casos" onclick="toggleMenu()">Proyectos</a>
+  <a href="#nosotros" onclick="toggleMenu()">Nosotros</a>
+  <a href="#clientes" onclick="toggleMenu()">Clientes</a>
+  <a href="#blog" onclick="toggleMenu()">Blog</a>
+  <a href="#testimonios" onclick="toggleMenu()">Opiniones</a>
+  <a href="#ventajas" onclick="toggleMenu()">Ventajas</a>
+  <a href="#contacto" onclick="toggleMenu()">Contacto</a>
+  <a href="#diagnostico" onclick="toggleMenu()">🎯 Diagnóstico gratuito</a>
+</div>
+
+<!-- ── 1. INICIO ── -->
+<section id="inicio">
+  <p class="hero-eyebrow">Transformación Digital · Resultados reales</p>
+  <h1>El futuro de tu empresa empieza hoy.</h1>
+  <p class="hero-sub">Soluciones tecnológicas diseñadas para hacer crecer tu negocio con claridad, velocidad y elegancia.</p>
+  <div class="hero-actions">
+    <a href="#diagnostico" class="btn-primary">Diagnóstico gratuito</a>
+    <a href="#servicios" class="btn-ghost">Ver servicios</a>
+  </div>
+  <div class="hero-visual">
+    <div class="device-mock">
+      <div class="device-inner">
+        <span class="icon">✦</span>
+        <p>Nexus Platform 2026</p>
       </div>
     </div>
-    <div class="page">
-      <div id="home">
-         <!-- Page Header-->
-        <header class="section page-header">
-          <!-- RD Navbar-->
-          <div class="rd-navbar-wrap">
-            <nav class="rd-navbar rd-navbar-classic" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-fixed" data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static" data-xxl-layout="rd-navbar-static" data-xxl-device-layout="rd-navbar-static" data-lg-stick-up-offset="46px" data-xl-stick-up-offset="46px" data-xxl-stick-up-offset="46px" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
-              <div class="rd-navbar-main-outer">
-                <div class="rd-navbar-main">
-                  <!-- RD Navbar Panel-->
-                  <div class="rd-navbar-panel">
-                    <!-- RD Navbar Toggle-->
-                    <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
-                    <!-- RD Navbar Brand-->
-                    <div class="rd-navbar-brand"><a class="brand" href="index.html"><img src="images/logo.png" alt="" width="223" height="50"/></a></div>
-                  </div>
-                  <div class="rd-navbar-main-element">
-                    <div class="rd-navbar-nav-wrap">
-                      <!-- RD Navbar Share-->
-                      <div class="rd-navbar-share fl-bigmug-line-share27" data-rd-navbar-toggle=".rd-navbar-share-list">
-                        <ul class="list-inline rd-navbar-share-list">
-                          <li class="rd-navbar-share-list-item"><a class="icon fa fa-facebook" href="#"></a></li>
-                        </ul>
-                      </div>
-                      <ul class="rd-navbar-nav">
-                        <li class="rd-nav-item active"><a class="rd-nav-link" href="#home">Inicio</a></li>
-                        <li class="rd-nav-item"><a class="rd-nav-link" href="#services">Servicios</a></li>          
-                        <li class="rd-nav-item"><a class="rd-nav-link" href="#contacts">Contacto</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </nav>
-          </div>
-        </header>
+  </div>
+</section>
 
-        <!-- Swiper-->
-        <section class="section swiper-container swiper-slider swiper-slider-classic" data-loop="true" data-autoplay="4859" data-simulate-touch="true" data-direction="vertical" data-nav="false">
-          <div class="swiper-wrapper text-center">
-            <div class="swiper-slide" data-slide-bg="images/st.jpg">
-              <div class="swiper-slide-caption section-md">
-                <div class="container">
-                  <h1 data-caption-animate="fadeInLeft" data-caption-delay="0" style="color: #fff;">Desarrollo de Software</h1>
-                  <p class="text-width-large" data-caption-animate="fadeInRight" data-caption-delay="100"style="color: #fff;">Ofrecemos soluciones de software sostenibles y de alta calidad </p><a class="button button-primary button-ujarak" href="#modalCta" data-toggle="modal" data-caption-animate="fadeInUp" data-caption-delay="200">Contactenos!</a>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide" data-slide-bg="images/web.jpg">
-              <div class="swiper-slide-caption section-md">
-                <div class="container">
-                  <h1 data-caption-animate="fadeInLeft" data-caption-delay="0"style="color: #fff;">Desarrollo de sitios web</h1>
-                  <p class="text-width-large" data-caption-animate="fadeInRight" data-caption-delay="100"style="color: #fff;">Ofrecemos paquetes para la creacion de sitios web para que su negocio sea visto por mas publico</p><a class="button button-primary button-ujarak" href="#modalCta" data-toggle="modal" data-caption-animate="fadeInUp" data-caption-delay="200">Contactenos!</a>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide" data-slide-bg="images/eq.jpg">
-              <div class="swiper-slide-caption section-md">
-                <div class="container">
-                  <h1 data-caption-animate="fadeInLeft" data-caption-delay="0"style="color: #fff;">Equipo experimentado</h1>
-                  <p class="text-width-large" data-caption-animate="fadeInRight" data-caption-delay="100"style="color: #fff;">Somos un equipo de desarrolladores de software, destinados a crear herramientas únicas para su negocio</p><a class="button button-primary button-ujarak" href="#modalCta" data-toggle="modal" data-caption-animate="fadeInUp" data-caption-delay="200">Contactenos!</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Swiper Pagination-->
-          <div class="swiper-pagination__module">
-            <div class="swiper-pagination__fraction"><span class="swiper-pagination__fraction-index">00</span><span class="swiper-pagination__fraction-divider">/</span><span class="swiper-pagination__fraction-count">00</span></div>
-            <div class="swiper-pagination__divider"></div>
-            <div class="swiper-pagination"></div>
-          </div>
-        </section>
+<!-- ── 2. SERVICIOS ── -->
+<section id="servicios">
+  <p class="section-eyebrow reveal">Servicios y Soluciones</p>
+  <h2 class="section-h2 reveal">Todo lo que necesitas para escalar.</h2>
+  <p class="section-lead reveal">Desde la estrategia hasta la ejecución, cubrimos cada etapa de tu transformación digital con expertos dedicados a tu éxito.</p>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="s-icon">🚀</span>
+      <h3>Transformación Digital</h3>
+      <p>Rediseñamos tus procesos para que la tecnología trabaje para ti, no al revés. Más eficiencia, menos fricción.</p>
+      <a href="#contacto" class="card-link">Saber más</a>
+    </div>
+    <div class="service-card reveal">
+      <span class="s-icon">🧠</span>
+      <h3>Inteligencia Artificial</h3>
+      <p>Implementamos soluciones de IA a medida: automatización, análisis predictivo y asistentes inteligentes para tu negocio.</p>
+      <a href="#contacto" class="card-link">Saber más</a>
+    </div>
+    <div class="service-card reveal">
+      <span class="s-icon">📊</span>
+      <h3>Analítica y Datos</h3>
+      <p>Convertimos tus datos en decisiones. Dashboards en tiempo real, reportes ejecutivos y KPIs que importan.</p>
+      <a href="#contacto" class="card-link">Saber más</a>
+    </div>
+    <div class="service-card reveal">
+      <span class="s-icon">🛡️</span>
+      <h3>Ciberseguridad</h3>
+      <p>Protegemos tu infraestructura, datos y reputación con las mejores prácticas y tecnologías del mercado.</p>
+      <a href="#contacto" class="card-link">Saber más</a>
+    </div>
+    <div class="service-card reveal">
+      <span class="s-icon">☁️</span>
+      <h3>Cloud &amp; Infraestructura</h3>
+      <p>Migración, optimización y gestión de entornos cloud en AWS, Azure y Google Cloud con máxima disponibilidad.</p>
+      <a href="#contacto" class="card-link">Saber más</a>
+    </div>
+    <div class="service-card reveal">
+      <span class="s-icon">💻</span>
+      <h3>Desarrollo a Medida</h3>
+      <p>Aplicaciones web, móviles y plataformas SaaS construidas con las últimas tecnologías y pensadas para crecer.</p>
+      <a href="#contacto" class="card-link">Saber más</a>
+    </div>
+  </div>
+</section>
 
-      </div>
-      <!-- See all services-->
-      <section class="section section-sm section-first bg-default text-center" id="services">
-        <div class="container">
-          <div class="row row-30 justify-content-center">
-            <div class="col-md-7 col-lg-5 col-xl-6 text-lg-left wow fadeInUp"><img src="images/ser.jpg" alt="" width="415" height="592"/>
-            </div>
-            <div class="col-lg-7 col-xl-6">
-              <div class="row row-30">
-                <div class="col-sm-6 wow fadeInRight">
-                  <article class="box-icon-modern box-icon-modern-custom">
-                    <div>
-                      <h3 class="box-icon-modern-big-title">¿Que Ofrecemos?</h3>
-                      <div class="box-icon-modern-decor"></div><a class="button button-primary button-ujarak" href="#">Nuestros Servicios</a>
-                    </div>
-                  </article>
-                </div>
-                <div class="col-sm-6 wow fadeInRight" data-wow-delay=".1s">
-                  <article class="box-icon-modern box-icon-modern-2">
-                    <div class="box-icon-modern-icon linearicons-phone-in-out"></div>
-                    <h5 class="box-icon-modern-title"><a href="#">Mantenimento<br>Preventivo</a></h5>
-                    <div class="box-icon-modern-decor"></div>
-                    <p class="box-icon-modern-text">Mantenimento preventivo a equipos de computo</p>
-                  </article>
-                </div>
-                <div class="col-sm-6 wow fadeInRight" data-wow-delay=".2s">
-                  <article class="box-icon-modern box-icon-modern-2">
-                    <div class="box-icon-modern-icon linearicons-headset"></div>
-                    <h5 class="box-icon-modern-title"><a href="#">Mantenimiento<br>Correctivo</a></h5>
-                    <div class="box-icon-modern-decor"></div>
-                    <p class="box-icon-modern-text">¿Tu equipo presenta algun problema?, Nosotros te ayudamos</p>
-                  </article>
-                </div>
-                <div class="col-sm-6 wow fadeInRight" data-wow-delay=".3s">
-                  <article class="box-icon-modern box-icon-modern-2">
-                    <div class="box-icon-modern-icon linearicons-outbox"></div>
-                    <h5 class="box-icon-modern-title"><a href="#">Software<br>Dedicado</a></h5>
-                    <div class="box-icon-modern-decor"></div>
-                    <p class="box-icon-modern-text">Instalacion de software segun las necesidades del usuario</p>
-                  </article>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-     
-
-    
-
-      <!-- Years of experience-->
-      <section class="section section-sm bg-default">
-        <div class="container">
-          <div class="row row-30 row-xl-24 justify-content-center align-items-center align-items-lg-start text-left">
-            <div class="col-md-6 col-lg-5 col-xl-4 text-center"><a class="text-img" href="#">
-                <div id="particles-js"></div><span class="counter">5</span></a></div>
-            <div class="col-sm-8 col-md-6 col-lg-5 col-xl-4">
-              <div class="text-width-extra-small offset-top-lg-24 wow fadeInUp">
-                <h3 class="title-decoration-lines-left">Años de experiencia</h3>
-                <p class="text-gray-500">Somos un equipo con una gran experiencia en el desarrollo de software a la medida y creacion de Sitios web.</p>
-              </div>
-            </div>
-            <div class="col-lg-6 col-xl-12 align-self-center">
-              <div class="row row-30 justify-content-center">
-                <div class="col-sm-6 col-md-5 col-lg-6 col-xl-3 wow fadeInLeft"><a ><img src="images/java.jpg" alt="" width="270" height="117"/></a></div>
-                <div class="col-sm-6 col-md-5 col-lg-6 col-xl-3 wow fadeInLeft" data-wow-delay=".1s"><a ><img src="images/vs.jpg" alt="" width="270" height="117"/></a></div>
-                <div class="col-sm-6 col-md-5 col-lg-6 col-xl-3 wow fadeInLeft" data-wow-delay=".2s"><a  ><img src="images/sql.jpg" alt="" width="270" height="117"/></a></div>
-                <div class="col-sm-6 col-md-5 col-lg-6 col-xl-3 wow fadeInLeft" data-wow-delay=".3s"><a ><img src="images/Laravel.jpg" alt="" width="270" height="117"/></a></div>
-              </div>
-            </div>
-           
-          </div>
-        </div>
-      </section>
-
-      <!-- You dream — we embody-->
-      <section class="section section-sm bg-default text-md-left">
-        <div class="container">
-          <div class="row row-50 align-items-center justify-content-center justify-content-xl-between">
-            <div class="col-lg-6 col-xl-5 wow fadeInLeft">
-              <h2>Obten mas con nosotros</h2>
-              <!-- Bootstrap tabs-->
-              <div class="tabs-custom tabs-horizontal tabs-line tabs-line-big text-center text-md-left" id="tabs-6">
-                <!-- Nav tabs-->
-                <ul class="nav nav-tabs">
-                  <li class="nav-item" role="presentation"><a class="nav-link nav-link-big active" href="#tabs-6-1" data-toggle="tab">01</a></li>
-                  <li class="nav-item" role="presentation"><a class="nav-link nav-link-big" href="#tabs-6-2" data-toggle="tab">02</a></li>
-                  <li class="nav-item" role="presentation"><a class="nav-link nav-link-big" href="#tabs-6-3" data-toggle="tab">03</a></li>
-                 </ul>
-                <!-- Tab panes-->
-                <div class="tab-content">
-                  <div class="tab-pane fade show active" id="tabs-6-1">
-                    <h5 class="font-weight-normal">Sitios  web a tu medida</h5>
-                    <p>Ya sea que necesites un sitio web para uso personal o para tu negocio nosotros nos adaptamos a tus necesidades</p>
-                    </div>
-                  <div class="tab-pane fade" id="tabs-6-2">
-                    <h5 class="font-weight-normal">Redes sociales</h5>
-                    <p>Todos los sitios que trabajamos llevan un apartado para mantenerte conectado a tus redes sociales ya sea Facebook, Twitter, entre otras redes</p>
-                    </div>
-                  <div class="tab-pane fade" id="tabs-6-3">
-                    <h5 class="font-weight-normal">Soporte Tecnico</h5>
-                    <p>Todos nuestros clientes tienen acceso a soporte tecnico de su sitio web ya sea por correo o de manera telefonica</p>
-                    </div>
-                  
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6 text-center wow fadeInUp" data-wow-delay=".1s">
-              <div class="owl-carousel owl-style-1" data-items="2" data-stage-padding="0" data-loop="true" data-margin="0" data-mouse-drag="true" data-autoplay="true"><a class="box-device" href="#"><img src="images/R.jpg" alt="" width="313" height="580"/></a><a class="box-device" href="#"><img src="images/r2.jpg" alt="" width="313" height="580"/></a><a class="box-device" href="#"><img src="images/R.jpg" alt="" width="313" height="580"/></a><a class="box-device" href="#"><img src="images/r2.jpg" alt="" width="313" height="580"/></a></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-     
-      <!-- Pricing-->
-      <section class="section section-sm section-bottom-70 section-fluid bg-default">
-        <div class="container">
-          <h2>Nuestros Paquetes para sitios web</h2>
-          <div class="row row-30 justify-content-center">
-            <div class="col-md-6 col-lg-5 col-xl-4">
-              <div class="box-pricing box-pricing-black">
-                <div class="box-pricing-body">
-                  <h5 class="box-pricing-title">basic</h5>
-                  <h3 class="box-pricing-price">$500.00</h3>
-                  <div class="box-pricing-time">starting at</div>
-                  <div class="box-pricing-divider">
-                    <div class="divider"></div><span>Basic</span>
-                  </div>
-                  <ul class="box-pricing-list">
-                    <li class="active">Concept development</li>
-                    <li class="active">UI design</li>
-                    <li>Configuration management</li>
-                    <li>Software quality assurance</li>
-                    <li>App integration</li>
-                  </ul>
-                </div>
-                <div class="box-pricing-button"><a class="button button-lg button-block button-gray-4" href="#">Get started</a></div>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-5 col-xl-4">
-              <div class="box-pricing box-pricing-black box-pricing-popular">
-                <div class="box-pricing-body">
-                  <h5 class="box-pricing-title">Optimal</h5>
-                  <h3 class="box-pricing-price">$800.00</h3>
-                  <div class="box-pricing-time">starting at</div>
-                  <div class="box-pricing-divider">
-                    <div class="divider"></div><span>Optimal</span>
-                  </div>
-                  <ul class="box-pricing-list">
-                    <li class="active">Concept development</li>
-                    <li class="active">UI design</li>
-                    <li class="active">Configuration management</li>
-                    <li class="active">Software quality assurance</li>
-                    <li>App integration</li>
-                  </ul>
-                </div>
-                <div class="box-pricing-button"><a class="button button-lg button-block button-primary" href="#">Get started</a></div>
-                <div class="box-pricing-badge">popular</div>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-5 col-xl-4">
-              <div class="box-pricing box-pricing-black">
-                <div class="box-pricing-body">
-                  <h5 class="box-pricing-title">Ultimate</h5>
-                  <h3 class="box-pricing-price">$1200.00</h3>
-                  <div class="box-pricing-time">starting at</div>
-                  <div class="box-pricing-divider">
-                    <div class="divider"></div><span>Ultimate</span>
-                  </div>
-                  <ul class="box-pricing-list">
-                    <li class="active">Concept development</li>
-                    <li class="active">UI design</li>
-                    <li class="active">Configuration management</li>
-                    <li class="active">Software quality assurance</li>
-                    <li class="active">App integration</li>
-                  </ul>
-                </div>
-                <div class="box-pricing-button"><a class="button button-lg button-block button-gray-4" href="#">Get started</a></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-     
-     
-
-      <!-- Contact Form-->
-      <section class="section section-sm section-last bg-default text-left" id="contacts">
-        <div class="container">
-          <article class="title-classic">
-           
-            <div class="title-classic-text">
-              <p>Si tienes alguna duda, sólo tienes que rellenar el formulario de contacto, y te responderemos en breve...</p>
-            </div>
-          </article>
-          <div class="title-classic-title">
-            <p class="text-width-large" data-caption-animate="fadeInRight" data-caption-delay="100"style="color: #fff;">Ofrecemos soluciones de software sostenibles y de alta calidad </p><a class="button button-primary button-ujarak" href="#modalCta" data-toggle="modal" data-caption-animate="fadeInUp" data-caption-delay="200">Contactenos!</a>
-          </div>
-        </div>
-      </section>
-
-    <!-- RD Google Map-->
-     
-
-      <!-- Page Footer-->
-      <footer class="section section-fluid footer-minimal context-dark">
-        <div class="bg-gray-15">
-          <div class="container-fluid">
-           
-            <div class="footer-minimal-bottom-panel text-sm-left">
-              <div class="row row-10 align-items-md-center">
-               
-                <div class="col-sm-6 col-md-4 order-sm-first">
-                  <!-- Rights-->
-                  <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span><span>  </span><span>All rights reserved.</span>
-                  </p>
-                </div>
-              
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-
-      <div class="modal fade" id="modalCta" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              
-              <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-            </div>
-            <div class="modal-body">
-              <form class="rd-form rd-form-variant-2 rd-mailform" data-form-output="form-output-global" data-form-type="contact-modal" method="post" action="bat/rd-mailform.php">
-                <div class="row row-14 gutters-14">
-                  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScUjsnNNBDEDEDZAUxOJHKcAVHUxQZXv0RQ1BoBM0Lg0JmAFg/viewform?embedded=true" width="640" height="812" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
-                </div>
-             
-              </form>
-            </div>
-          </div>
-        </div>
+<!-- ── 3. CASOS DE ÉXITO ── -->
+<section id="casos">
+  <p class="section-eyebrow reveal">Casos de éxito</p>
+  <h2 class="section-h2 reveal">Resultados que hablan por sí solos.</h2>
+  <p class="section-lead reveal">Más de 200 proyectos completados. Cada uno con un objetivo claro, una ejecución impecable y métricas que demuestran el impacto real.</p>
+  <div class="casos-grid">
+    <div class="caso-card reveal">
+      <div class="caso-img c1">🏦</div>
+      <div class="caso-body">
+        <p class="caso-tag">Sector Financiero</p>
+        <h3>Banco Digital Nacional</h3>
+        <p>Automatización de onboarding con IA: de 5 días a 12 minutos de tiempo de alta.</p>
+        <p class="caso-stat">−97% <span>tiempo de proceso</span></p>
       </div>
     </div>
-    <!-- Global Mailform Output-->
-    <div class="snackbars" id="form-output-global"></div>
-    <!-- Javascript-->
-    <script src="js/core.min.js"></script>
-    <script src="js/script.js"></script>
-    <!-- coded by Himic-->
-  </body>
+    <div class="caso-card reveal">
+      <div class="caso-img c2">🏥</div>
+      <div class="caso-body">
+        <p class="caso-tag">Salud &amp; Bienestar</p>
+        <h3>Red Clínica Meridian</h3>
+        <p>Plataforma centralizada con análisis predictivo para prevención de riesgos clínicos.</p>
+        <p class="caso-stat">+340% <span>eficiencia operativa</span></p>
+      </div>
+    </div>
+    <div class="caso-card reveal">
+      <div class="caso-img c3">🛒</div>
+      <div class="caso-body">
+        <p class="caso-tag">Retail &amp; Ecommerce</p>
+        <h3>Grupo Comercial Altus</h3>
+        <p>Motor de recomendaciones y optimización de inventario con machine learning en tiempo real.</p>
+        <p class="caso-stat">+128% <span>conversión online</span></p>
+      </div>
+    </div>
+    <div class="caso-card reveal">
+      <div class="caso-img c4">🏭</div>
+      <div class="caso-body">
+        <p class="caso-tag">Industria &amp; Manufactura</p>
+        <h3>Smart Industrias</h3>
+        <p>IoT para mantenimiento predictivo: cero paradas no programadas en 18 meses.</p>
+        <p class="caso-stat">€2.4M <span>ahorrados</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 4. SOBRE NOSOTROS ── -->
+<section id="nosotros">
+  <div class="nosotros-inner">
+    <div class="nosotros-top reveal">
+      <h2>Más de una década construyendo el futuro digital.</h2>
+      <p>Somos un equipo de 80+ especialistas en tecnología, diseño y estrategia. Fundados en 2012, hemos acompañado a empresas de todos los sectores en su viaje hacia la excelencia digital. Creemos que la tecnología debe ser humana, elegante y, sobre todo, efectiva.</p>
+    </div>
+    <div class="nosotros-stats reveal">
+      <div class="ns-stat"><p class="ns-stat-num">12+</p><p class="ns-stat-label">Años de experiencia</p></div>
+      <div class="ns-stat"><p class="ns-stat-num">200+</p><p class="ns-stat-label">Proyectos completados</p></div>
+      <div class="ns-stat"><p class="ns-stat-num">80+</p><p class="ns-stat-label">Expertos en el equipo</p></div>
+      <div class="ns-stat"><p class="ns-stat-num">98%</p><p class="ns-stat-label">Satisfacción cliente</p></div>
+    </div>
+    <div class="team-grid reveal">
+      <div class="team-card"><div class="team-avatar t1">👩‍💼</div><h4>María González</h4><p>CEO &amp; Fundadora</p></div>
+      <div class="team-card"><div class="team-avatar t2">👨‍💻</div><h4>Carlos Ruiz</h4><p>CTO</p></div>
+      <div class="team-card"><div class="team-avatar t3">👩‍🎨</div><h4>Ana Martínez</h4><p>Directora de Diseño</p></div>
+      <div class="team-card"><div class="team-avatar t4">👨‍📊</div><h4>David López</h4><p>Director de Estrategia</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 5. CLIENTES ── -->
+<section id="clientes">
+  <p class="section-eyebrow reveal">Nuestros clientes</p>
+  <h2 class="section-h2 reveal">Empresas que confían en Nexus.</h2>
+  <p class="section-lead reveal">Trabajamos con startups de alto crecimiento y grandes corporaciones que comparten una visión: hacer las cosas mejor con tecnología.</p>
+  <div class="clients-logos reveal">
+    <div class="client-logo">Santander</div>
+    <div class="client-logo">Mapfre</div>
+    <div class="client-logo">El Corte Inglés</div>
+    <div class="client-logo">Telefónica</div>
+    <div class="client-logo">BBVA</div>
+    <div class="client-logo">Repsol</div>
+    <div class="client-logo">Inditex</div>
+    <div class="client-logo">Endesa</div>
+    <div class="client-logo">AXA</div>
+    <div class="client-logo">Acciona</div>
+  </div>
+</section>
+
+<!-- ── 6. BLOG ── -->
+<section id="blog">
+  <p class="section-eyebrow reveal">Blog · Recursos · Insights</p>
+  <h2 class="section-h2 reveal">Ideas que transforman negocios.</h2>
+  <p class="section-lead reveal">Publicamos semanalmente análisis, guías y tendencias del mundo tech para que siempre estés un paso adelante.</p>
+  <div class="blog-grid">
+    <div class="blog-card reveal">
+      <div class="blog-thumb bt1">🤖</div>
+      <div class="blog-body">
+        <p class="blog-tag">Inteligencia Artificial</p>
+        <h3>Cómo la IA generativa está redefiniendo el trabajo en 2026</h3>
+        <p>Análisis profundo de casos de uso reales e integración de LLMs en procesos core.</p>
+        <p class="blog-meta">12 feb 2026 · 8 min de lectura</p>
+      </div>
+    </div>
+    <div class="blog-card reveal">
+      <div class="blog-thumb bt2">☁️</div>
+      <div class="blog-body">
+        <p class="blog-tag">Cloud Strategy</p>
+        <h3>Multi-cloud en 2026: cuándo tiene sentido y cuándo es un error</h3>
+        <p>Criterios claros para tomar la decisión correcta según el tamaño y sector de tu empresa.</p>
+        <p class="blog-meta">5 feb 2026 · 6 min de lectura</p>
+      </div>
+    </div>
+    <div class="blog-card reveal">
+      <div class="blog-thumb bt3">🔐</div>
+      <div class="blog-body">
+        <p class="blog-tag">Ciberseguridad</p>
+        <h3>Las 5 amenazas de ciberseguridad más peligrosas para pymes este año</h3>
+        <p>Ransomware, phishing avanzado, supply chain attacks… y cómo protegerte.</p>
+        <p class="blog-meta">28 ene 2026 · 5 min de lectura</p>
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center; margin-top: 48px;">
+    <a href="#" class="btn-outline">Ver todos los artículos</a>
+  </div>
+</section>
+
+<!-- ── 7. CONTACTO ── -->
+<section id="contacto">
+  <div class="contact-inner">
+    <div class="contact-info reveal">
+      <p class="section-eyebrow" style="text-align:left; margin-bottom:16px;">Contacto · Agenda una reunión</p>
+      <h2>Hablemos de tu proyecto.</h2>
+      <p>Cuéntanos el reto que tienes. En menos de 24 horas te respondemos con ideas concretas y sin compromisos.</p>
+      <div class="contact-item"><span>📧</span><a href="mailto:hola@nexus.com">hola@nexus.com</a></div>
+      <div class="contact-item"><span>📞</span><a href="tel:+34910000000">+34 910 000 000</a></div>
+      <div class="contact-item"><span>📍</span><span style="font-size:15px; color:var(--gray);">Paseo de la Castellana 100, Madrid</span></div>
+    </div>
+    <form class="contact-form reveal" onsubmit="return false;">
+      <div class="form-row">
+        <div class="form-group"><label>Nombre</label><input type="text" placeholder="Tu nombre"></div>
+        <div class="form-group"><label>Empresa</label><input type="text" placeholder="Tu empresa"></div>
+      </div>
+      <div class="form-group"><label>Email</label><input type="email" placeholder="tu@empresa.com"></div>
+      <div class="form-group">
+        <label>¿Qué necesitas?</label>
+        <select>
+          <option value="">Selecciona un servicio…</option>
+          <option>Transformación Digital</option>
+          <option>Inteligencia Artificial</option>
+          <option>Analítica y Datos</option>
+          <option>Ciberseguridad</option>
+          <option>Cloud &amp; Infraestructura</option>
+          <option>Desarrollo a Medida</option>
+          <option>Diagnóstico gratuito</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Mensaje</label><textarea placeholder="Cuéntanos tu proyecto…"></textarea></div>
+      <button type="submit" class="form-submit">Enviar mensaje →</button>
+    </form>
+  </div>
+</section>
+
+<!-- ── 8. TESTIMONIOS ── -->
+<section id="testimonios">
+  <p class="section-eyebrow reveal">Testimonios · Opiniones</p>
+  <h2 class="section-h2 reveal">Lo que dicen quienes nos conocen.</h2>
+  <div class="testimonios-grid">
+    <div class="testi-card reveal">
+      <p class="testi-stars">★★★★★</p>
+      <blockquote>"Nexus no solo nos entregó tecnología, nos entregó una nueva forma de ver nuestro negocio. El ROI en el primer año superó todas las expectativas."</blockquote>
+      <div class="testi-author">
+        <div class="testi-avatar ta1">👩</div>
+        <div class="testi-author-info"><h4>Laura Sánchez</h4><p>CDO · Banco Digital Nacional</p></div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <p class="testi-stars">★★★★★</p>
+      <blockquote>"Lo que más valoro es su capacidad de entender el negocio antes de hablar de tecnología. Son socios, no solo proveedores."</blockquote>
+      <div class="testi-author">
+        <div class="testi-avatar ta2">👨</div>
+        <div class="testi-author-info"><h4>Javier Moreno</h4><p>CEO · Grupo Comercial Altus</p></div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <p class="testi-stars">★★★★★</p>
+      <blockquote>"Implementaron en 3 meses lo que nuestra área de IT lleva 2 años intentando. El equipo de Nexus es simplemente extraordinario."</blockquote>
+      <div class="testi-author">
+        <div class="testi-avatar ta3">👩</div>
+        <div class="testi-author-info"><h4>Patricia Vega</h4><p>CTO · Red Clínica Meridian</p></div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <p class="testi-stars">★★★★★</p>
+      <blockquote>"Ahorramos 2,4 millones en el primer año con su plataforma de mantenimiento predictivo. El cálculo de ROI fue inmediato y contundente."</blockquote>
+      <div class="testi-author">
+        <div class="testi-avatar ta4">👨</div>
+        <div class="testi-author-info"><h4>Roberto Díaz</h4><p>Director Industrial · Smart Industrias</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 9. POR QUÉ ELEGIRNOS ── -->
+<section id="ventajas">
+  <div class="ventajas-inner">
+    <p class="section-eyebrow reveal">¿Por qué elegirnos? · Ventajas</p>
+    <h2 class="section-h2 reveal">No somos una consultora más.</h2>
+    <p class="section-lead reveal">Somos el equipo que tus mejores competidores ya quisieran tener. Estas son las razones por las que nuestros clientes nos eligen y se quedan.</p>
+    <div class="ventajas-grid">
+      <div class="ventaja-item reveal">
+        <span class="v-icon">⚡</span>
+        <h3>Velocidad de entrega</h3>
+        <p>Primeros resultados en menos de 30 días. Metodologías ágiles para entregar valor desde el día uno.</p>
+      </div>
+      <div class="ventaja-item reveal">
+        <span class="v-icon">🎯</span>
+        <h3>Enfoque en ROI</h3>
+        <p>Cada decisión técnica tiene una justificación de negocio con KPIs claros desde el inicio del proyecto.</p>
+      </div>
+      <div class="ventaja-item reveal">
+        <span class="v-icon">🤝</span>
+        <h3>Equipo dedicado</h3>
+        <p>No eres un ticket de soporte. Tienes un equipo asignado que conoce tu negocio y tus objetivos.</p>
+      </div>
+      <div class="ventaja-item reveal">
+        <span class="v-icon">🔒</span>
+        <h3>Seguridad y privacidad</h3>
+        <p>Cumplimiento GDPR e ISO 27001 en cada proyecto. Tus datos están siempre protegidos.</p>
+      </div>
+      <div class="ventaja-item reveal">
+        <span class="v-icon">📈</span>
+        <h3>Escalabilidad</h3>
+        <p>Construimos para el futuro. Nuestras soluciones crecen contigo sin rediseños costosos.</p>
+      </div>
+      <div class="ventaja-item reveal">
+        <span class="v-icon">🌍</span>
+        <h3>Presencia internacional</h3>
+        <p>Oficinas en Madrid, Barcelona, CDMX y Miami. Proyectos entregados en 18 países.</p>
+      </div>
+    </div>
+    <div class="ventajas-cta reveal">
+      <h3>¿Listo para dar el salto?</h3>
+      <a href="#diagnostico" class="btn-primary">Solicita tu diagnóstico gratuito</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── 10. DIAGNÓSTICO ── -->
+<section id="diagnostico">
+  <p class="section-eyebrow">Diagnóstico · Auditoría gratuita</p>
+  <h2 class="section-h2">Descubre en 48h qué está frenando a tu empresa.</h2>
+  <p class="section-lead">Sin coste, sin compromiso. Nuestro equipo analiza tu situación actual y te entrega un informe con los 3 puntos de mayor impacto para tu transformación digital.</p>
+  <div class="diag-steps">
+    <div class="diag-step">
+      <p class="diag-step-num">01</p>
+      <h4>Solicitud online</h4>
+      <p>Rellena el formulario en 2 minutos con información básica sobre tu empresa.</p>
+    </div>
+    <div class="diag-step">
+      <p class="diag-step-num">02</p>
+      <h4>Reunión de 30 min</h4>
+      <p>Un experto de Nexus se conecta contigo para entender tus retos en detalle.</p>
+    </div>
+    <div class="diag-step">
+      <p class="diag-step-num">03</p>
+      <h4>Informe ejecutivo</h4>
+      <p>En 48 horas recibes tu diagnóstico con un plan de acción priorizado.</p>
+    </div>
+    <div class="diag-step">
+      <p class="diag-step-num">04</p>
+      <h4>Decisión tuya</h4>
+      <p>Sin presiones. El informe es tuyo hagas lo que hagas después con él.</p>
+    </div>
+  </div>
+  <div class="diag-cta">
+    <a href="#contacto" class="btn-white">Quiero mi diagnóstico gratis</a>
+    <a href="#contacto" class="btn-white-outline">Agendar una reunión</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-cols">
+    <div class="footer-brand-col">
+      <span class="footer-logo">⌘ Nexus</span>
+      <p>Transformación digital con propósito. Tecnología que hace crecer negocios desde 2012.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Servicios</h5>
+      <a href="#servicios">Transformación Digital</a>
+      <a href="#servicios">Inteligencia Artificial</a>
+      <a href="#servicios">Analítica y Datos</a>
+      <a href="#servicios">Ciberseguridad</a>
+      <a href="#servicios">Cloud</a>
+    </div>
+    <div class="footer-col">
+      <h5>Empresa</h5>
+      <a href="#nosotros">Sobre nosotros</a>
+      <a href="#casos">Casos de éxito</a>
+      <a href="#clientes">Clientes</a>
+      <a href="#testimonios">Testimonios</a>
+      <a href="#">Trabaja con nosotros</a>
+    </div>
+    <div class="footer-col">
+      <h5>Recursos</h5>
+      <a href="#blog">Blog</a>
+      <a href="#">Guías y ebooks</a>
+      <a href="#">Webinars</a>
+      <a href="#">Podcast</a>
+      <a href="#">Newsletter</a>
+    </div>
+    <div class="footer-col">
+      <h5>Contacto</h5>
+      <a href="#contacto">Escríbenos</a>
+      <a href="#diagnostico">Diagnóstico gratuito</a>
+      <a href="#contacto">Agenda reunión</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Twitter / X</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Nexus Technology, S.L. · Paseo de la Castellana 100, Madrid</p>
+    <div class="footer-bottom-links">
+      <a href="#">Política de privacidad</a>
+      <a href="#">Aviso legal</a>
+      <a href="#">Cookies</a>
+      <a href="#">Accesibilidad</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Mobile menu ──
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ── Scroll reveal ──
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// Stagger grid children
+document.querySelectorAll('.services-grid, .casos-grid, .blog-grid, .testimonios-grid, .ventajas-grid, .diag-steps, .clients-logos').forEach(grid => {
+  grid.querySelectorAll('.reveal, .client-logo').forEach((child, i) => {
+    child.style.transitionDelay = `${i * 75}ms`;
+  });
+});
+
+// ── Active nav link tracking ──
+const sections = document.querySelectorAll('section[id], div[id]');
+const navLinks = document.querySelectorAll('nav ul li a');
+
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${id}`) {
+          link.classList.add('active');
+        }
+      });
+    }
+  });
+}, {
+  rootMargin: '-52px 0px -50% 0px',
+  threshold: 0
+});
+
+sections.forEach(section => sectionObserver.observe(section));
+
+// ── Close mobile menu on scroll or link click ──
+window.addEventListener('scroll', () => {
+  document.getElementById('mobileMenu').classList.remove('open');
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      document.getElementById('mobileMenu').classList.remove('open');
+      const navHeight = 52;
+      const top = target.getBoundingClientRect().top + window.scrollY - navHeight;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+</body>
 </html>
