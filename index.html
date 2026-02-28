@@ -7,7 +7,7 @@
 <title>Cardinal Solutions</title>
 <style>
 
-- { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; scroll-padding-top: 52px; }
   body { font-family: -apple-system, Helvetica, Arial, sans-serif; color: #1d1d1f; background: #fff; overflow-x: hidden; }
 
@@ -62,20 +62,22 @@ flex-direction: column;
 .btn-texto { display: inline-flex; align-items: center; gap: 4px; color: #0071e3 !important; font-size: 16px; }
 .btn-texto:link, .btn-texto:visited { color: #0071e3 !important; }
 .btn-texto:hover { color: #005bb5 !important; }
-.btn-texto::after { content: “›”; font-size: 20px; }
+.btn-texto::after { content: "›"; font-size: 20px; }
 
 .link-mas { display: inline-flex; align-items: center; gap: 3px; color: #0071e3 !important; font-size: 14px; }
 .link-mas:link, .link-mas:visited { color: #0071e3 !important; }
 .link-mas:hover { color: #005bb5 !important; }
-.link-mas::after { content: “›”; font-size: 18px; }
+.link-mas::after { content: "›"; font-size: 18px; }
 
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s, transform 0.7s; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
 /* === HERO === */
-  .imagen-responsiva {
-    max-width: 100%; /* El ancho máximo no superará al contenedor */
-    height: auto;    /* Mantiene la proporción de la imagen */
+.imagen-responsiva {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 #inicio {
 min-height: unset; display: flex; flex-direction: column;
@@ -83,10 +85,9 @@ align-items: center; justify-content: center; text-align: center;
 padding: 90px 24px 60px;
 background: linear-gradient(180deg, #f9f9fb 0%, #efeff4 100%);
 position: relative; overflow: hidden;
-  
 }
 #inicio::before {
-content: “”; position: absolute; inset: 0;
+content: ""; position: absolute; inset: 0;
 background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(0,113,227,0.07), transparent 70%);
 pointer-events: none;
 }
@@ -103,7 +104,7 @@ box-shadow: 0 40px 80px rgba(0,0,0,0.2);
 display: flex; align-items: center; justify-content: center;
 position: relative; overflow: hidden;
 }
-.mock::before { content: “”; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,113,227,0.2), rgba(100,40,200,0.1), transparent); }
+.mock::before { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,113,227,0.2), rgba(100,40,200,0.1), transparent); }
 .mock-in { position: relative; text-align: center; color: #fff; }
 .mock-ico { font-size: 52px; display: block; margin-bottom: 10px; }
 .mock-in p { font-size: 15px; opacity: 0.5; }
@@ -117,26 +118,9 @@ position: relative; overflow: hidden;
 .svc h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
 .svc p { font-size: 14px; color: #6e6e73; line-height: 1.6; margin-bottom: 16px; }
 
-/* === CASOS === */
-#casos { padding: 100px 40px; background: #fff; }
-.casos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 20px; max-width: 1160px; margin: 0 auto; }
-.caso { border-radius: 18px; overflow: hidden; background: #f5f5f7; }
-.caso:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.08); }
-.caso-img { height: 180px; display: flex; align-items: center; justify-content: center; font-size: 60px; }
-.ci1 { background: linear-gradient(135deg, #e8f4fd, #c3dff7); }
-.ci2 { background: linear-gradient(135deg, #f0f9ee, #c8e9c2); }
-.ci3 { background: linear-gradient(135deg, #fef3e2, #fdd9a0); }
-.ci4 { background: linear-gradient(135deg, #f5e6ff, #ddb8f9); }
-.caso-body { padding: 24px; }
-.caso-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: #0071e3; margin-bottom: 8px; }
-.caso-body h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-.caso-body p { font-size: 13px; color: #6e6e73; line-height: 1.5; margin-bottom: 12px; }
-.caso-num { font-size: 26px; font-weight: 700; color: #1d1d1f; }
-.caso-num span { font-size: 13px; font-weight: 400; color: #6e6e73; margin-left: 4px; }
-
 /* === NOSOTROS === */
 #nosotros { padding: 100px 40px; background: linear-gradient(160deg, #0d0d0f, #101828); color: #fff; position: relative; overflow: hidden; }
-#nosotros::before { content: “”; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0,113,227,0.12), transparent 70%); }
+#nosotros::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0,113,227,0.12), transparent 70%); }
 .nos-wrap { max-width: 1060px; margin: 0 auto; position: relative; }
 .nos-top { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; margin-bottom: 60px; }
 .nos-top h2 { font-size: clamp(26px, 3.5vw, 46px); font-weight: 700; letter-spacing: -1px; line-height: 1.1; }
@@ -151,31 +135,25 @@ position: relative; overflow: hidden;
 .miembro h4 { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 3px; }
 .miembro p { font-size: 12px; color: rgba(255,255,255,0.4); }
 
-/* === CLIENTES === */
-#clientes { padding: 80px 40px; background: #f5f5f7; }
-.logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; max-width: 960px; margin: 0 auto; }
-.logo { background: #fff; border-radius: 12px; padding: 16px 24px; font-size: 14px; font-weight: 700; color: #6e6e73; transition: color 0.2s, box-shadow 0.2s; }
-.logo:hover { color: #1d1d1f; box-shadow: 0 6px 20px rgba(0,0,0,0.07); }
-
 /* === BLOG === */
 #blog { padding: 100px 40px; background: #fff; }
 .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 22px; max-width: 1160px; margin: 0 auto; }
 .art { border-radius: 18px; overflow: hidden; background: #f5f5f7; }
 .art:hover { box-shadow: 0 18px 40px rgba(0,0,0,0.08); }
-.art-img { height: 170px; display: flex; align-items: center; justify-content: center; font-size: 46px; overflow: hidden; }
-.ai1 { background: linear-gradient(135deg, #fdf6e3, #f5c842); }
-.ai2 { background: linear-gradient(135deg, #e3f2fd, #64b5f6); }
-.ai3 { background: linear-gradient(135deg, #fce4ec, #f48fb1); }
+
+/* === IMAGEN DEL BLOG — usar background-image === */
+.art-img {
+  height: 170px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .art-body { padding: 22px; }
 .art-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: #0071e3; margin-bottom: 8px; }
 .art-body h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
 .art-body p { font-size: 13px; color: #6e6e73; line-height: 1.6; margin-bottom: 12px; }
 .art-fecha { font-size: 12px; color: #6e6e73; }
-  .art-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block; }
 
 /* === CONTACTO === */
 #contacto { padding: 100px 40px; background: #f9f9fb; }
@@ -198,39 +176,9 @@ position: relative; overflow: hidden;
 .f-btn { background: #0071e3; color: #fff; border: none; border-radius: 50px; padding: 13px 26px; font-size: 16px; cursor: pointer; font-family: inherit; }
 .f-btn:hover { background: #005bb5; }
 
- /* === TESTIMONIOS === */
-#testimonios { padding: 100px 40px; background: #1d1d1f; color: #fff; }
-#testimonios .lbl { color: rgba(255,255,255,0.35); }
-#testimonios .ttl { color: #fff; }
-.tgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 16px; max-width: 1160px; margin: 0 auto; }
-.tcard { background: rgba(255,255,255,0.05); border-radius: 18px; padding: 32px 28px; border: 1px solid rgba(255,255,255,0.08); }
-.tcard:hover { background: rgba(255,255,255,0.08); }
-.estrellas { color: #f5c842; font-size: 14px; letter-spacing: 3px; margin-bottom: 14px; }
-.tcard blockquote { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.65; font-style: italic; margin-bottom: 20px; }
-.t-autor { display: flex; align-items: center; gap: 10px; }
-.t-foto { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
-.f1 { background: linear-gradient(135deg, #667eea, #764ba2); }
-.f2 { background: linear-gradient(135deg, #f093fb, #f5576c); }
-.f3 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
-.f4 { background: linear-gradient(135deg, #43e97b, #38f9d7); }
-.t-info h4 { font-size: 14px; font-weight: 600; color: #fff; }
-.t-info p { font-size: 12px; color: rgba(255,255,255,0.4); }
-
-/* === VENTAJAS === */
-#ventajas { padding: 100px 40px; background: #f5f5f7; }
-.v-wrap { max-width: 1060px; margin: 0 auto; }
-.v-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2px; background: rgba(0,0,0,0.06); border-radius: 18px; overflow: hidden; margin-bottom: 56px; }
-.v-item { background: #fff; padding: 38px 30px; transition: background 0.2s; }
-.v-item:hover { background: #f0f8ff; }
-.v-ico { font-size: 36px; display: block; margin-bottom: 14px; }
-.v-item h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-.v-item p { font-size: 14px; color: #6e6e73; line-height: 1.6; }
-.v-cta { text-align: center; }
-.v-cta h3 { font-size: 26px; font-weight: 700; margin-bottom: 20px; }
-
 /* === DIAGNOSTICO === */
-#diagnostico { padding: 100px 40px; background: linear-gradient( 135deg, #0071e3, #0a2a6e); color: #fff; text-align: center; position: relative; overflow: hidden; }
-#diagnostico::before { content: “”; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 50% 100%, rgba(255,255,255,0.05), transparent 70%); }
+#diagnostico { padding: 100px 40px; background: linear-gradient(135deg, #0071e3, #0a2a6e); color: #fff; text-align: center; position: relative; overflow: hidden; }
+#diagnostico::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 50% 100%, rgba(255,255,255,0.05), transparent 70%); }
 #diagnostico .lbl { color: rgba(255,255,255,0.55); }
 #diagnostico .ttl { color: #fff; }
 #diagnostico .sub { color: rgba(255,255,255,0.6); margin-bottom: 44px; }
@@ -268,7 +216,7 @@ footer { background: #f5f5f7; border-top: 1px solid rgba(0,0,0,0.08); padding: 4
 /* === RESPONSIVE === */
 @media (max-width: 960px) { .nav-links, .nav-btn { display: none; } .nav-hamburger { display: block; } nav { padding: 0 20px; } }
 @media (max-width: 860px) {
-#inicio, #servicios, #casos, #nosotros, #clientes, #blog, #contacto, #testimonios, #ventajas, #diagnostico { padding-left: 20px; padding-right: 20px; }
+#inicio, #servicios, #nosotros, #blog, #contacto, #diagnostico { padding-left: 20px; padding-right: 20px; }
 .nos-top { grid-template-columns: 1fr; gap: 30px; }
 .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
 .f-row { grid-template-columns: 1fr; }
@@ -283,18 +231,13 @@ footer { background: #f5f5f7; border-top: 1px solid rgba(0,0,0,0.08); padding: 4
 <body>
 
 <!-- NAVEGACION -->
-
 <nav>
-  <span class="nav-logo"> <!--&#9670;--> Cardinal Solutions</span>
+  <span class="nav-logo">Cardinal Solutions</span>
   <ul class="nav-links">
     <li><a href="#inicio">Inicio</a></li>
     <li><a href="#servicios">Servicios</a></li>
-    <!--  <li><a href="#casos">Proyectos</a></li> -->
     <li><a href="#nosotros">Nosotros</a></li>
-    <!--  <li><a href="#clientes">Clientes</a></li> -->
     <li><a href="#blog">Blog</a></li>
-    <!--  <li><a href="#testimonios">Opiniones</a></li> -->
-    <!--  <li><a href="#ventajas">Ventajas</a></li> -->
   </ul>
   <a href="#diagnostico" class="nav-btn">Diagn&#243;stico gratis</a>
   <button class="nav-hamburger" onclick="toggleNav()">&#9776;</button>
@@ -303,39 +246,25 @@ footer { background: #f5f5f7; border-top: 1px solid rgba(0,0,0,0.08); padding: 4
 <div class="mobile-nav" id="mobileNav">
   <a href="#inicio" onclick="closeNav()">Inicio</a>
   <a href="#servicios" onclick="closeNav()">Servicios</a>
-   <!-- <a href="#casos" onclick="closeNav()">Proyectos</a> -->
   <a href="#nosotros" onclick="closeNav()">Nosotros</a>
-   <!-- <a href="#clientes" onclick="closeNav()">Clientes</a> -->
   <a href="#blog" onclick="closeNav()">Blog</a>
-   <!-- <a href="#testimonios" onclick="closeNav()">Opiniones</a> -->
-   <!-- <a href="#ventajas" onclick="closeNav()">Ventajas</a> -->
   <a href="#contacto" onclick="closeNav()">Contacto</a>
   <a href="#diagnostico" onclick="closeNav()">Diagn&#243;stico gratuito</a>
 </div>
 
 <!-- HERO -->
-
 <section id="inicio">
- <!-- <p class="hero-tag">Soporte TI para PyMEs &middot; Tecnolog&#237;a que impulsa tu negocio</p> -->
   <h1>Tu empresa merece la mejor tecnolog&#237;a.</h1>
-  <p class="hero-desc">Soporte TI personalizado, respaldo de datos y desarrollo a la medida para crecer sin complicaciones.,  Tecnolog&#237;a que impulsa tu negocio</p>
-  <div class="hero-btns">
-   <!-- <a href="#diagnostico" class="btn-azul">Diagn&#243;stico gratuito</a> -->
-   <!-- <a href="#servicios" class="btn-texto">Ver servicios</a> -->
-  </div>
+  <p class="hero-desc">Soporte TI personalizado, respaldo de datos y desarrollo a la medida para crecer sin complicaciones. Tecnolog&#237;a que impulsa tu negocio.</p>
+  <div class="hero-btns"></div>
   <div class="hero-vis">
-    <div class="mock"> 
+    <div class="mock">
       <img src="images/uno.jpg" class="imagen-responsiva">
-      <!-- <div class="mock-in">
-        <span class="mock-ico">&#9670;</span>
-        <p>Cardinal Solutions Platform</p>
-      </div> -->
     </div>
   </div>
 </section>
 
 <!-- SERVICIOS -->
-
 <section id="servicios">
   <p class="lbl reveal">Servicios y Soluciones</p>
   <h2 class="ttl reveal">Todo lo que necesitas para crecer.</h2>
@@ -380,54 +309,7 @@ footer { background: #f5f5f7; border-top: 1px solid rgba(0,0,0,0.08); padding: 4
   </div>
 </section>
 
-<!-- CASOS -->
-
- <!--  <section id="casos">
-  <p class="lbl reveal">Casos de &#233;xito</p>
-  <h2 class="ttl reveal">Resultados que hablan por s&#237; solos.</h2>
-  <p class="sub reveal">Proyectos completados con objetivos claros y m&#233;tricas que demuestran el impacto real.</p>
-  <div class="casos-grid">
-    <div class="caso reveal">
-      <div class="caso-img ci1">&#127968;</div>
-      <div class="caso-body">
-        <p class="caso-tag">Sector Financiero</p>
-        <h3>Banco Digital Nacional</h3>
-        <p>Automatizaci&#243;n de onboarding: de 5 d&#237;as a 12 minutos de alta por cliente.</p>
-        <p class="caso-num">&#8722;97% <span>en tiempo de proceso</span></p>
-      </div>
-    </div>
-    <div class="caso reveal">
-      <div class="caso-img ci2">&#127973;</div>
-      <div class="caso-body">
-        <p class="caso-tag">Salud y Bienestar</p>
-        <h3>Red Cl&#237;nica Meridian</h3>
-        <p>An&#225;lisis predictivo para prevenci&#243;n de riesgos cl&#237;nicos en tiempo real.</p>
-        <p class="caso-num">+340% <span>en eficiencia operativa</span></p>
-      </div>
-    </div>
-    <div class="caso reveal">
-      <div class="caso-img ci3">&#128722;</div>
-      <div class="caso-body">
-        <p class="caso-tag">Retail y Ecommerce</p>
-        <h3>Grupo Comercial Altus</h3>
-        <p>Motor de recomendaciones con machine learning y optimizaci&#243;n de inventario.</p>
-        <p class="caso-num">+128% <span>en conversi&#243;n online</span></p>
-      </div>
-    </div>
-    <div class="caso reveal">
-      <div class="caso-img ci4">&#127981;</div>
-      <div class="caso-body">
-        <p class="caso-tag">Industria y Manufactura</p>
-        <h3>Smart Industrias</h3>
-        <p>IoT para mantenimiento predictivo: cero paradas no programadas en 18 meses.</p>
-        <p class="caso-num">$2.4M <span>ahorrados en mantenimiento</span></p>
-      </div>
-    </div>
-  </div>
-</section> -->
-
 <!-- NOSOTROS -->
-
 <section id="nosotros">
   <div class="nos-wrap">
     <div class="nos-top reveal">
@@ -443,36 +325,16 @@ footer { background: #f5f5f7; border-top: 1px solid rgba(0,0,0,0.08); padding: 4
   </div>
 </section>
 
-<!-- CLIENTES -->
-
-<!--  <section id="clientes">
-  <p class="lbl reveal">Nuestros clientes</p>
-  <h2 class="ttl reveal">Empresas que conf&#237;an en Cardinal Solutions.</h2>
-  <p class="sub reveal">Trabajamos con PyMEs y grandes empresas que quieren crecer con tecnolog&#237;a.</p>
-  <div class="logos reveal">
-    <div class="logo">Santander</div>
-    <div class="logo">Mapfre</div>
-    <div class="logo">El Corte Ingl&#233;s</div>
-    <div class="logo">Telef&#243;nica</div>
-    <div class="logo">BBVA</div>
-    <div class="logo">Repsol</div>
-    <div class="logo">Inditex</div>
-    <div class="logo">Endesa</div>
-    <div class="logo">AXA</div>
-    <div class="logo">Acciona</div>
-  </div>
-</section> -->
-
 <!-- BLOG -->
-
 <section id="blog">
   <p class="lbl reveal">Blog y Recursos</p>
   <h2 class="ttl reveal">Ideas que transforman negocios.</h2>
   <p class="sub reveal">Publicamos gu&#237;as y tendencias del mundo tech para que siempre est&#233;s un paso adelante.</p>
   <div class="blog-grid">
+
     <div class="art reveal">
-      <!-- <div class="art-img ai1">&#129302;</div> -->
-      <img src="images/IMG_4591.jpeg" class="art-img" style="object-fit: cover;">
+      <!-- Reemplaza la ruta por tu imagen real -->
+      <div class="art-img" style="background-image: url('images/blog1.jpg');"></div>
       <div class="art-body">
         <p class="art-tag">Inteligencia Artificial</p>
         <h3>C&#243;mo la IA est&#225; redefiniendo el trabajo en las PyMEs</h3>
@@ -480,8 +342,10 @@ footer { background: #f5f5f7; border-top: 1px solid rgba(0,0,0,0.08); padding: 4
         <p class="art-fecha">12 feb 2026 &middot; 8 min</p>
       </div>
     </div>
+
     <div class="art reveal">
-      <div class="art-img ai2">&#128190;</div>
+      <!-- Reemplaza la ruta por tu imagen real -->
+      <div class="art-img" style="background-image: url('images/blog2.jpg');"></div>
       <div class="art-body">
         <p class="art-tag">Respaldo de Datos</p>
         <h3>Google Drive vs OneDrive: &#191;cu&#225;l es mejor para tu empresa?</h3>
@@ -489,8 +353,10 @@ footer { background: #f5f5f7; border-top: 1px solid rgba(0,0,0,0.08); padding: 4
         <p class="art-fecha">5 feb 2026 &middot; 6 min</p>
       </div>
     </div>
+
     <div class="art reveal">
-      <div class="art-img ai3">&#128421;</div>
+      <!-- Reemplaza la ruta por tu imagen real -->
+      <div class="art-img" style="background-image: url('images/blog3.jpg');"></div>
       <div class="art-body">
         <p class="art-tag">Mantenimiento</p>
         <h3>Mantenimiento preventivo vs correctivo: &#191;cu&#225;ndo aplicar cada uno?</h3>
@@ -498,6 +364,7 @@ footer { background: #f5f5f7; border-top: 1px solid rgba(0,0,0,0.08); padding: 4
         <p class="art-fecha">28 ene 2026 &middot; 5 min</p>
       </div>
     </div>
+
   </div>
   <div style="text-align:center; margin-top:44px;">
     <a href="#" class="btn-borde">Ver todos los art&#237;culos</a>
@@ -505,7 +372,6 @@ footer { background: #f5f5f7; border-top: 1px solid rgba(0,0,0,0.08); padding: 4
 </section>
 
 <!-- CONTACTO -->
-
 <section id="contacto">
   <div class="contact-wrap">
     <div class="c-info reveal">
@@ -542,60 +408,8 @@ footer { background: #f5f5f7; border-top: 1px solid rgba(0,0,0,0.08); padding: 4
   </div>
 </section>
 
-<!-- TESTIMONIOS -->
-
-<!-- <section id="testimonios">
-  <p class="lbl reveal">Testimonios</p>
-  <h2 class="ttl reveal">Lo que dicen quienes nos conocen.</h2>
-  <div class="tgrid">
-    <div class="tcard reveal">
-      <p class="estrellas">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-      <blockquote>Cardinal Solutions no solo nos entreg&#243; tecnolog&#237;a, nos entreg&#243; una nueva forma de ver nuestro negocio. El ROI en el primer a&#241;o super&#243; todas las expectativas.</blockquote>
-      <div class="t-autor"><div class="t-foto f1">&#128105;</div><div class="t-info"><h4>Laura S&#225;nchez</h4><p>CDO &middot; Banco Digital Nacional</p></div></div>
-    </div>
-    <div class="tcard reveal">
-      <p class="estrellas">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-      <blockquote>Lo que m&#225;s valoro es su capacidad de entender el negocio antes de hablar de tecnolog&#237;a. Son socios, no solo proveedores.</blockquote>
-      <div class="t-autor"><div class="t-foto f2">&#128104;</div><div class="t-info"><h4>Javier Moreno</h4><p>CEO &middot; Grupo Comercial Altus</p></div></div>
-    </div>
-    <div class="tcard reveal">
-      <p class="estrellas">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-      <blockquote>Implementaron en 3 meses lo que nuestra &#225;rea de IT lleva 2 a&#241;os intentando. El equipo de Cardinal Solutions es simplemente extraordinario.</blockquote>
-      <div class="t-autor"><div class="t-foto f3">&#128105;</div><div class="t-info"><h4>Patricia Vega</h4><p>CTO &middot; Red Cl&#237;nica Meridian</p></div></div>
-    </div>
-    <div class="tcard reveal">
-      <p class="estrellas">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-      <blockquote>Ahorramos $2.4 millones en el primer a&#241;o. El c&#225;lculo de ROI fue inmediato y contundente.</blockquote>
-      <div class="t-autor"><div class="t-foto f4">&#128104;</div><div class="t-info"><h4>Roberto D&#237;az</h4><p>Director Industrial &middot; Smart Industrias</p></div></div>
-    </div>
-  </div>
-</section>
- -->
-<!-- VENTAJAS -->
-
-<!--<section id="ventajas">
-  <div class="v-wrap">
-    <p class="lbl reveal">Por qu&#233; elegirnos</p>
-    <h2 class="ttl reveal">No somos un proveedor m&#225;s.</h2>
-    <p class="sub reveal">Estas son las razones por las que nuestros clientes nos eligen y se quedan con Cardinal Solutions.</p>
-    <div class="v-grid">
-      <div class="v-item reveal"><span class="v-ico">&#9889;</span><h3>Respuesta r&#225;pida</h3><p>Atenci&#243;n y resoluci&#243;n de problemas en el menor tiempo posible para no frenar tu operaci&#243;n.</p></div>
-      <div class="v-item reveal"><span class="v-ico">&#127919;</span><h3>Enfoque en resultados</h3><p>Cada servicio tiene un objetivo claro. Medimos el impacto real en tu negocio desde el primer d&#237;a.</p></div>
-      <div class="v-item reveal"><span class="v-ico">&#129309;</span><h3>Trato personalizado</h3><p>No eres un ticket. Tienes un equipo que conoce tu empresa, tus sistemas y tus objetivos.</p></div>
-      <div class="v-item reveal"><span class="v-ico">&#128295;</span><h3>Mantenimiento continuo</h3><p>Planes preventivos y correctivos para mantener tus equipos en &#243;ptimas condiciones siempre.</p></div>
-      <div class="v-item reveal"><span class="v-ico">&#128200;</span><h3>Escalabilidad</h3><p>Nuestros servicios crecen con tu empresa sin complicaciones ni contratos engorrosos.</p></div>
-      <div class="v-item reveal"><span class="v-ico">&#128274;</span><h3>Seguridad garantizada</h3><p>Respaldo cifrado y buenas pr&#225;cticas de seguridad en cada proyecto que emprendemos juntos.</p></div>
-    </div>
-    <div class="v-cta reveal">
-      <h3>&#191;Listo para dar el salto?</h3>
-      <a href="#diagnostico" class="btn-azul">Solicita tu diagn&#243;stico gratuito</a>
-    </div>
-  </div>
-</section> -->
-
 <!-- DIAGNOSTICO -->
-
- <section id="diagnostico">
+<section id="diagnostico">
   <p class="lbl">Diagn&#243;stico gratuito</p>
   <h2 class="ttl">Descubre qu&#233; est&#225; frenando a tu empresa.</h2>
   <p class="sub">Sin costo, sin compromiso. Analizamos tu situaci&#243;n y entregamos un plan de acci&#243;n en 48 horas.</p>
@@ -606,17 +420,15 @@ footer { background: #f5f5f7; border-top: 1px solid rgba(0,0,0,0.08); padding: 4
     <div class="paso"><p class="paso-num">04</p><h4>Decisi&#243;n tuya</h4><p>Sin presiones. El informe es tuyo, hagas lo que hagas despu&#233;s.</p></div>
   </div>
   <div class="diag-btns">
-    <!-- <a href="#contacto" class="btn-blanco">Quiero mi diagn&#243;stico gratis</a> -->
     <a href="#contacto" class="btn-blanco-borde">Agendar una reuni&#243;n</a>
   </div>
-</section> 
+</section>
 
 <!-- FOOTER -->
-
 <footer>
   <div class="f-grid">
     <div class="f-marca">
-      <strong><!--&#9670;--> Cardinal Solutions</strong>
+      <strong>Cardinal Solutions</strong>
       <p>Soporte TI personalizado y desarrollo a la medida para PyMEs que quieren crecer.</p>
     </div>
     <div class="f-col">
@@ -630,9 +442,6 @@ footer { background: #f5f5f7; border-top: 1px solid rgba(0,0,0,0.08); padding: 4
     <div class="f-col">
       <h5>Empresa</h5>
       <a href="#nosotros">Sobre nosotros</a>
-     <!-- <a href="#casos">Casos de &#233;xito</a> -->
-     <!-- <a href="#clientes">Clientes</a> -->
-      <!--<a href="#testimonios">Testimonios</a> -->
     </div>
     <div class="f-col">
       <h5>Recursos</h5>
@@ -644,9 +453,7 @@ footer { background: #f5f5f7; border-top: 1px solid rgba(0,0,0,0.08); padding: 4
     <div class="f-col">
       <h5>Contacto</h5>
       <a href="#contacto">Esc&#237;benos</a>
-       <!-- <a href="#diagnostico">Diagn&#243;stico gratis</a> -->
       <a href="#contacto">Agendar reuni&#243;n</a>
-       <!-- <a href="#">LinkedIn</a> -->
       <a href="#">WhatsApp</a>
     </div>
   </div>
@@ -676,19 +483,22 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
 
 var secs = document.querySelectorAll('section[id]');
 var nls = document.querySelectorAll('.nav-links a');
-new IntersectionObserver(function(es) {
+var so = new IntersectionObserver(function(es) {
   es.forEach(function(e) {
-    if (e.isIntersecting) { var id = e.target.id; nls.forEach(function(l) { l.classList.remove('active'); if (l.getAttribute('href') === '#' + id) l.classList.add('active'); }); }
+    if (e.isIntersecting) {
+      var id = e.target.id;
+      nls.forEach(function(l) { l.classList.remove('active'); if (l.getAttribute('href') === '#' + id) l.classList.add('active'); });
+    }
   });
-}, { rootMargin: '-52px 0px -50% 0px', threshold: 0 }).observe || secs.forEach(function(s) {});
-
-var so = new IntersectionObserver(function(es) { es.forEach(function(e) { if (e.isIntersecting) { var id = e.target.id; nls.forEach(function(l) { l.classList.remove('active'); if (l.getAttribute('href') === '#' + id) l.classList.add('active'); }); } }); }, { rootMargin: '-52px 0px -50% 0px', threshold: 0 });
+}, { rootMargin: '-52px 0px -50% 0px', threshold: 0 });
 secs.forEach(function(s) { so.observe(s); });
 
-var ro = new IntersectionObserver(function(es) { es.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+var ro = new IntersectionObserver(function(es) {
+  es.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 document.querySelectorAll('.reveal').forEach(function(el) { ro.observe(el); });
 
-document.querySelectorAll('.svc-grid, .casos-grid, .blog-grid, .tgrid, .v-grid, .pasos').forEach(function(g) {
+document.querySelectorAll('.svc-grid, .blog-grid, .pasos').forEach(function(g) {
   g.querySelectorAll('.reveal').forEach(function(c, i) { c.style.transitionDelay = (i * 70) + 'ms'; });
 });
 
